@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'file:///E:/Mobile/Flutter/Projects/sports_news/lib/Screens/Container1.dart';
-import 'file:///E:/Mobile/Flutter/Projects/sports_news/lib/Screens/Container2.dart';
-import 'file:///E:/Mobile/Flutter/Projects/sports_news/lib/Screens/Container3.dart';
+import 'package:sports_news/Screens/Container1.dart';
+import 'package:sports_news/Screens/Container2.dart';
+import 'package:sports_news/Screens/Container3.dart';
+
 
 class bottomProvider with ChangeNotifier{
   int currentIdex=0;

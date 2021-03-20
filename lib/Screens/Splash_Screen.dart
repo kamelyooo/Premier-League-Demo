@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sports_news/main.dart';
-import 'file:///E:/Mobile/Flutter/Projects/sports_news/lib/Screens/Container1.dart';
-import 'file:///E:/Mobile/Flutter/Projects/sports_news/lib/Screens/Container2.dart';
-import 'file:///E:/Mobile/Flutter/Projects/sports_news/lib/Screens/Container3.dart';
+
+import 'Container1.dart';
+import 'Container2.dart';
+import 'Container3.dart';
+
 
 class SplashScreen extends StatefulWidget {
   @override

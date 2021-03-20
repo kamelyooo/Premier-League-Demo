@@ -74,23 +74,29 @@ class Container1 extends StatelessWidget {
                   padding: EdgeInsets.only(right: 10, left: 10, bottom: 10),
                   child: Column(
                     children: [
-                      Container(
-                        color: Color.fromRGBO(235, 235, 235, 1),
-                        height: 40,
-                        width: double.infinity,
-                        padding: EdgeInsets.only(left: 7, right: 5),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(flex: 2, child: Text("Pos")),
-                            Expanded(flex: 2, child: Text("Club")),
-                            Expanded(child: Text("P")),
-                            Expanded(child: Text("GD")),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 5),
-                              child: Text("Pts"),
-                            ),
-                          ],
+                      LayoutBuilder(
+                        builder: (BuildContext context, BoxConstraints constraints) =>
+                         Container(
+                          color: Color.fromRGBO(235, 235, 235, 1),
+                          height: 40,
+                          width: double.infinity,
+                          // padding: EdgeInsets.only(left: 7, right: 5),
+                          child: Row(
+
+                            children: [
+                              Container(padding: EdgeInsets.only(left: 7),
+                                  width:constraints.maxWidth*0.20,
+                                  child: Text("Pos")),
+                              Container(padding: EdgeInsets.only(left: 20),width:constraints.maxWidth*0.40,child: Text("Club")),
+                              Container(width:constraints.maxWidth*0.15,child: Text("P")),
+                              Container(width:constraints.maxWidth*0.15,child: Text("GD")),
+                              Container(
+                                width:constraints.maxWidth*0.10,
+                                padding: EdgeInsets.only(right: 10),
+                                child: Text("Pts",textAlign: TextAlign.right,),
+                              ),
+                            ],
+                          ),
                         ),
                       )
                     ],

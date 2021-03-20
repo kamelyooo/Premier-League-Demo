@@ -44,9 +44,12 @@ class CardOfTeamDetails extends StatelessWidget {
         children: [
           Expanded(
             flex: 2,
-            child: Text(
-              "    ${type}",
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+            child: Padding(
+              padding: const EdgeInsets.only(left:9),
+              child: Text(
+                "${type}",
+                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+              ),
             ),
           ),
           SizedBox(

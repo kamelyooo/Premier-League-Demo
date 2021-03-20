@@ -1,5 +1,6 @@
 
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sports_news/Providers/Api_Provider.dart';
@@ -26,7 +27,7 @@ class CardOfMatch extends StatelessWidget {
             'Match Finished',
             style: TextStyle(fontWeight: FontWeight.bold),
           )
-              : (item['fixture']['status']['long'] == 'Not Started'
+              : ((item['fixture']['status']['long'] == 'Not Started')
               ? Text('Time : ${item['fixture']['date'].toString().substring(
               11, 16)} UTC', style: TextStyle(fontWeight: FontWeight.bold))
               : Padding(
@@ -56,107 +57,99 @@ class CardOfMatch extends StatelessWidget {
               ],
             ),
           )),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  flex: 3,
-                  child: Row(
-                    children: [
-                      ClipRRect(
-                        child: Image.network(
-                          '${item['teams']['home']['logo']}',
-                          height: 50,
-                          width: 50,
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left:8.0),
-                          child: Text(
 
-                            '${item['teams']['home']['name']}',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,),
-                            textAlign: TextAlign.left,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Row(
-                    children: [
-                      Container(
-                        height: 35,
-                        width: 50,
-                        padding: EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black26, width: 2),
-                          color: Colors.white54,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            item['goals']['home'] == null ? Text("--") : Text(
-                              "${item['goals']['home'].toString()}",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
-                            ),
-                            SizedBox(
-                              width: 1,
-                            ),
-                            Text(
-                              '-',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 25),
-                            ),
-                            SizedBox(
-                              width: 1,
-                            ),
-                            item['goals']['away'] == null ? Text("--") : Text(
-                              "${item['goals']['away'].toString()}",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Expanded(
-                        child: Text(
 
-                          '${item['teams']['away']['name']}',
+          Container(
+            height: 70,
+            child: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints)=>
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width:constraints.maxWidth*0.15,
+                    child: ClipRRect(
+                      child: Image.network(
+                        '${item['teams']['home']['logo']}',
+
+
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(left: 2),
+                    width: constraints.maxWidth*0.25,
+                    child: Text(
+
+                      '${item['teams']['home']['name']}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,),
+                      textAlign: TextAlign.left,
+                    ),
+                  ),
+                  Container(
+                    height: 35,
+                    width:  constraints.maxWidth*0.20,
+
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black26, width: 2),
+                      color: Colors.white54,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        item['goals']['home'] == null ? Text("--") : Text(
+                          "${item['goals']['home'].toString()}",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 14),
-                          textAlign: TextAlign.end,
+                              fontWeight: FontWeight.bold, fontSize: 20),
                         ),
-                      ),
-                      ClipRRect(
-                        child: Image.network(
-                          '${item['teams']['away']['logo']}',
-                          height: 50,
-                          width: 50,
+                        SizedBox(
+                          width: 3,
                         ),
-                      ),
-                    ],
+                        Text(
+                          '-',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 25),
+                        ),
+                        SizedBox(
+                          width: 3,
+                        ),
+                        item['goals']['away'] == null ? Text("--") : Text(
+                          "${item['goals']['away'].toString()}",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                  Container(
+                    padding: EdgeInsets.only(right: 2),
+                    width:  constraints.maxWidth*0.25,
+                    child: Text(
+
+                      '${item['teams']['away']['name']}',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 14),
+                      textAlign: TextAlign.end,
+                    ),
+                  ),
+                  Container(
+                    width:constraints.maxWidth*0.15,
+                    child: ClipRRect(
+                      child: Image.network(
+                        '${item['teams']['away']['logo']}',
+
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
+
+
+
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [

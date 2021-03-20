@@ -12,7 +12,6 @@ class cardOfLeagueTable extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 70,
-      padding: EdgeInsets.only(left: 30, right: 10),
       color: Colors.white,
       child: InkWell(
         onTap: (){
@@ -20,61 +19,37 @@ class cardOfLeagueTable extends StatelessWidget {
             return TeamDetails(teamId: item['team']['id'],teamlogo: item['team']['logo'],teamName:item['team']['name'] ,);
           }));
         },
-        child: Row(
-          children: [
-            Expanded(
-              child: Row(
-                children: [
-                  Text(item['rank'].toString()),
-                  Expanded(
-                    child: Container(
-                        height: 12,
-                        width: 12,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color.fromRGBO(235, 235, 235, 1),
-                        )),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              flex: 5,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(left: 2),
-                    width: 50,
-                      alignment: Alignment.centerLeft,
-                      child: Image.network(item['team']['logo'])),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 2),
-                    child: Container(
-                        width: 75,
-                        child: Text(
-                          item['team']['name'],
-                          overflow: TextOverflow.fade,
-                          textAlign: TextAlign.start,
-                        )),
-                  ),
-                  Expanded(
-                      child: Container(
-                          margin: EdgeInsets.only(left: 17),
-                          child: Text('${item['all']['played']}'))),
-                  Expanded(
-                      child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('${item['goalsDiff']}'),
+        child: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints)=>Row(
+            children: [
+              Container(
+                padding: EdgeInsets.only(left: 20),
+                  width:constraints.maxWidth*0.10,child: Text(item['rank'].toString())),
+              Container(
+
+                  height: 12,
+                  width:constraints.maxWidth*0.10,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color.fromRGBO(235, 235, 235, 1),
                   )),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: Text('${item['points']}'),
-                  ),
-                ],
-              ),
-            ),
-          ],
+              Container(
+
+                  width:constraints.maxWidth*0.10,
+                  alignment: Alignment.centerLeft,
+                  child: Image.network(item['team']['logo'])),
+              Container(
+                  width:constraints.maxWidth*0.30,
+                  child: Text(
+                    item['team']['name'],
+                    overflow: TextOverflow.fade,
+                    textAlign: TextAlign.start,
+                  )),
+              Container(alignment:Alignment.centerLeft,width:constraints.maxWidth*0.15,child: Text('${item['all']['played']}')),
+              Container(alignment:Alignment.centerLeft,width:constraints.maxWidth*0.15,child: Text('${item['goalsDiff']}')),
+              Container(width:constraints.maxWidth*0.10,child: Text('${item['points']}')),
+            ],
+          ),
         ),
       ),
     );
